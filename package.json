@@ -1,0 +1,54 @@
+{
+  "name": "dynamic-schema-example",
+  "version": "1.0.0",
+  "description": "loopback",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "clean": "lb-clean dist *.tsbuildinfo",
+    "pretest": "npm run clean && npm run build",
+    "migrate": "node ./dist/migrate",
+    "prestart": "npm run build",
+    "start": "node -r source-map-support/register .",
+    "prepublishOnly": "npm run test"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "",
+  "files": [
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/boot": "^2.0.0",
+    "@loopback/context": "^3.0.0",
+    "@loopback/core": "^2.0.0",
+    "@loopback/openapi-v3": "^3.0.0",
+    "@loopback/repository": "^2.0.0",
+    "@loopback/rest": "^3.0.0",
+    "@loopback/rest-explorer": "^2.0.0",
+    "@loopback/service-proxy": "^2.0.0",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@loopback/build": "^4.0.0",
+    "source-map-support": "^0.5.16",
+    "@loopback/testlab": "^2.0.0",
+    "@types/node": "^10.17.17",
+    "typescript": "~3.8.3"
+  }
+}
