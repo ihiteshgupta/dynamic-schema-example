@@ -23,8 +23,8 @@ export class UserService {
             connector: 'postgresql',
             host: 'localhost',
             port: '5432',
-            user: 'hitesh',
-            password: '30121993',
+            user: 'test',
+            password: 'test',
             database: 'test',
             schema: schema,
         });
