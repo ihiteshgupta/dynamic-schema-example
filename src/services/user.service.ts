@@ -1,11 +1,13 @@
-import {bind, BindingScope} from '@loopback/core';
+import {bind, BindingScope, inject} from '@loopback/core';
 import {User} from "../models";
 import {DataObject, DefaultCrudRepository, Filter, Options} from "@loopback/repository";
 import {PostgresDataSource} from "../datasources";
 
 @bind({scope: BindingScope.TRANSIENT})
 export class UserService {
-    constructor(/* Add @inject to inject parameters */) {
+    constructor(
+        @inject('datasources.Postgres') public dataSource: PostgresDataSource
+    ) {
     }
 
     async find(schema: string, filter?: Filter<User>, options?: Options): Promise<User[]> {
@@ -28,6 +30,7 @@ export class UserService {
             database: 'test',
             schema: schema,
         });
-        return new DefaultCrudRepository(User, ds);
+        this.dataSource.settings.schema = schema
+        return new DefaultCrudRepository(User, this.dataSource);
     }
 }
