@@ -6,7 +6,7 @@
     "loopback-application",
     "loopback"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=10"
   },
@@ -34,22 +34,22 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/boot": "^2.0.0",
-    "@loopback/context": "^3.0.0",
-    "@loopback/core": "^2.0.0",
-    "@loopback/openapi-v3": "^3.0.0",
-    "@loopback/repository": "^2.0.0",
-    "@loopback/rest": "^3.0.0",
-    "@loopback/rest-explorer": "^2.0.0",
-    "@loopback/service-proxy": "^2.0.0",
-    "loopback-connector-postgresql": "^3.9.1",
-    "tslib": "^1.10.0"
+    "@loopback/boot": "^3.1.2",
+    "@loopback/context": "^3.13.2",
+    "@loopback/core": "^2.13.1",
+    "@loopback/openapi-v3": "^5.1.2",
+    "@loopback/repository": "^3.3.0",
+    "@loopback/rest": "^9.1.1",
+    "@loopback/rest-explorer": "^3.0.5",
+    "@loopback/service-proxy": "^3.0.5",
+    "loopback-connector-postgresql": "^5.0.0",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@loopback/build": "^4.0.0",
-    "source-map-support": "^0.5.16",
-    "@loopback/testlab": "^2.0.0",
-    "@types/node": "^10.17.17",
-    "typescript": "~3.8.3"
+    "@loopback/build": "^6.2.8",
+    "source-map-support": "^0.5.19",
+    "@loopback/testlab": "^3.2.10",
+    "@types/node": "^10.17.48",
+    "typescript": "~4.1.2"
   }
 }
