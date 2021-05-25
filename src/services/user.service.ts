@@ -1,13 +1,13 @@
-import {bind, BindingScope, inject} from '@loopback/core';
+import {bind, BindingScope} from '@loopback/core';
 import {User} from "../models";
-import {DataObject, DefaultCrudRepository, Filter, Options} from "@loopback/repository";
+import {AnyObject, DataObject, DefaultCrudRepository, Filter, Options} from "@loopback/repository";
 import {PostgresDataSource} from "../datasources";
 
-@bind({scope: BindingScope.TRANSIENT})
+@bind({scope: BindingScope.SINGLETON})
 export class UserService {
-    constructor(
-        @inject('datasources.Postgres') public dataSource: PostgresDataSource
-    ) {
+    repos: AnyObject = {};
+
+    constructor() {
     }
 
     async find(schema: string, filter?: Filter<User>, options?: Options): Promise<User[]> {
@@ -21,16 +21,18 @@ export class UserService {
     }
 
     async getRepo(schema: string) {
-        const ds = new PostgresDataSource({
-            connector: 'postgresql',
-            host: 'localhost',
-            port: '5432',
-            user: 'test',
-            password: 'test',
-            database: 'test',
-            schema: schema,
-        });
-        this.dataSource.settings.schema = schema
-        return new DefaultCrudRepository(User, this.dataSource);
+        if (!this.repos[schema]) {
+            const ds = new PostgresDataSource({
+                connector: 'postgresql',
+                host: 'localhost',
+                port: '5432',
+                user: 'postgres',
+                password: 'mypassword',
+                database: 'test',
+                schema: schema,
+            });
+            this.repos[schema] = new DefaultCrudRepository(User, ds);
+        }
+        return this.repos[schema]
     }
 }
